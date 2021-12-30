@@ -1,3 +1,13 @@
+$ErrorActionPreference = "Stop"
+
+$DOTFILES_DIR = "$Env:USERPROFILE\.win-dotfiles"
+
+if (-Not(Test-Path -Path $DOTFILES_DIR))
+{
+    Write-Host "Sync .win-dotfiles ..."
+    $Env:GIT_SSH_COMMAND = "ssh -i ~\\.ssh\\id_rsa_personal"
+    git clone git@github.com:404pilot/.win-dotfiles.git $DOTFILES_DIR
+}
 
 function Link_File
 {
@@ -17,10 +27,10 @@ function Link_File
 }
 
 Write-Host "Creating necessary symbo links ..."
-Link_File -Source ".\git\gitconfig" -Output "~\.gitconfig"
-Link_File -Source ".\editor_config\editorconfig" -Output "~\.editorconfig"
-Link_File -Source ".\ssh\config" -Output "~\.ssh\config"
-Link_File -Source ".\vim\vimrc" -Output "~\.vimrc"
+Link_File -Source "$DOTFILES_DIR\git\gitconfig" -Output "~\.gitconfig"
+Link_File -Source "$DOTFILES_DIR\editor_config\editorconfig" -Output "~\.editorconfig"
+Link_File -Source "$DOTFILES_DIR\vim\vimrc" -Output "~\.vimrc"
+Link_File -Source "$DOTFILES_DIR\ssh\config" -Output "~\.ssh\config"
 
 Write-Host "Configuring cmd ..."
-REG import .\cmd\autorun_cmd_alias.reg
+REG import $DOTFILES_DIR\cmd\autorun_cmd_alias.reg
