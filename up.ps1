@@ -30,6 +30,7 @@ Write-Host "Creating necessary symbo links ..."
 Link_File -Source "$DOTFILES_DIR\git\gitconfig" -Output "~\.gitconfig"
 Link_File -Source "$DOTFILES_DIR\editor_config\editorconfig" -Output "~\.editorconfig"
 Link_File -Source "$DOTFILES_DIR\vim\vimrc" -Output "~\.vimrc"
+Link_File -Source "$DOTFILES_DIR\autohotkey\404pilot.ahk" -Output "~\404pilot.ahk"
 Link_File -Source "$DOTFILES_DIR\ssh\config" -Output "~\.ssh\config"
 
 Write-Host "Configuring cmd ..."
