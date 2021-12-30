@@ -1,0 +1,41 @@
+set number
+set hlsearch
+syntax on
+
+"yank stuff to clipboard as well
+set clipboard=unnamed
+
+"put deleted stuff in black hole
+nnoremap d "_d
+nnoremap dd "_dd
+nnoremap D "_D
+vnoremap d "_d
+" re-map the original action with leader key prefixed
+" nnoremap <leader>d ""d
+" nnoremap <leader>dd ""dd
+" nnoremap <leader>D ""D
+" vnoremap <leader>d ""d
+
+nnoremap c "_c
+nnoremap C "_C
+vnoremap c "_c
+
+nnoremap x "_x
+nnoremap X "_X
+"nnoremap <leader>x ""x
+"nnoremap <leader>X ""X
+
+" " Specify a directory for plugins
+" " - For Neovim: stdpath('data') . '/plugged'
+" " - Avoid using standard Vim directory names like 'plugin'
+" call plug#begin('~/.vim/plugged')
+"
+" " Make sure you use single quotes
+"
+" Plug 'Lokaltog/vim-easymotion'
+"
+" " Initialize plugin system
+" call plug#end()
+"
+" nmap ,, <Plug>(easymotion-prefix)
+" nmap ,,s <Plug>(easymotion-s2)
