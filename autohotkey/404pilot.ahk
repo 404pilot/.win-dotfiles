@@ -3,6 +3,8 @@
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
+EnvGet, ComputerName, COMPUTERNAME
+
 GetScoopManagedAppPath(app_path)
 {
     EnvGet, home_path, userprofile
@@ -38,20 +40,15 @@ LAlt & 1::BringUpFrontApp("ahk_exe Code.exe", GetScoopManagedAppPath("vscode\cur
 LAlt & 3::BringUpFrontApp("ahk_exe Notion.exe", GetScoopManagedAppPath("notion\current\Notion.exe"))
 LAlt & 4::BringUpFrontApp("ahk_exe Teams.exe", GetLocalApp("Microsoft\Teams\Update.exe", "--processStart ""Teams.exe"""))
 LAlt & 6::BringUpFrontApp("ahk_exe OUTLOOK.EXE", "OUTLOOK.exe")
-LAlt & e::BringUpFrontApp("ahk_exe WindowsTerminal.exe", "wt")
 ; ; LAlt & v::BringUpFrontApp("ahk_exe ONENOTE.exe", "OneNote.lnk")
 ; LAlt & v::BringUpFrontApp("ahk_exe onenoteim.exe", "OneNote1.lnk")
 
-
-
-; if WinActivate, chrome.exe
-    ; WinActivate
-; else
-    ; Run, chrome.exe
-; WinActivate, Untitled - Notepad
-;    ; WinWaitActive, Untitled - Notepad
-; Send, 7 lines{!}{Enter}
-; SendInput, inside the CTRL{+}J hotkey.
+LAlt & e::
+    if laptop in ComputerName
+        BringUpFrontApp("ahk_exe WindowsTerminal.exe", "wt")
+    else
+        BringUpFrontApp("ahk_exe cmd.exe", "C:\Windows\System32\cmd.exe /k D:\work\OneDrive.Client\init.cmd")
+return
 
 ; Combinations of three or more keys are not supported.
 ;; arrows
