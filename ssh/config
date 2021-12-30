@@ -1,0 +1,19 @@
+Host github.com
+    Hostname ssh.github.com
+    Port 443
+    User git
+    # IdentityFile and IdentitiesOnly are a pair
+    IdentityFile ~/.ssh/id_rsa_personal
+    IdentitiesOnly yes
+
+# modify gitconfig to use github.com-second in the upstream
+Host github.com-work
+    Hostname ssh.github.com
+    Port 443
+    # User git
+    # IdentityFile ~/.ssh/id_rsa_work
+    # IdentitiesOnly yes
+
+Host *
+    StrictHostKeyChecking no
+    UserKnownHostsFile /dev/null
