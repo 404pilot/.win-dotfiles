@@ -45,22 +45,34 @@ LAlt & 6::BringUpFrontApp("ahk_exe OUTLOOK.EXE", "OUTLOOK.exe")
 ; LAlt & v::BringUpFrontApp("ahk_exe onenoteim.exe", "OneNote1.lnk")
 
 LAlt & 4::
-    ; 300 seconds: 5 min
-    ; 480 minutes: 8 hours
-    ; TODO not Exist
     if not WinExist("ahk_exe Teams.exe")
+        ; 300 seconds: 5 min
+        ; 480 minutes: 8 hours
         run, powershell "caffeine 300 -activefor:480 -replace"
     BringUpFrontApp("ahk_exe Teams.exe", GetLocalApp("Microsoft\Teams\Update.exe", "--processStart ""Teams.exe"""))
 return
 
+LAlt & s::
+    if IsDesktop
+    {
+        if WinExist("ahk_exe devenv.exe")
+            WinActivate
+        return
+    }
+return
+
 LAlt & e::
     if IsLaptop
+    {
         BringUpFrontApp("ahk_exe WindowsTerminal.exe", "wt")
         return
+    }
 
-    if IsDestop
+    if IsDesktop
+    {
         BringUpFrontApp("ahk_exe cmd.exe", "C:\Windows\System32\cmd.exe /k D:\work\OneDrive.Client\init.cmd")
         return
+    }
 return
 
 ; Combinations of three or more keys are not supported.

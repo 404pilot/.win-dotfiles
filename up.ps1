@@ -34,7 +34,7 @@ Link_File -Source "$DOTFILES_DIR\autohotkey\404pilot.ahk" -Output "~\404pilot.ah
 Link_File -Source "$DOTFILES_DIR\ssh\config" -Output "~\.ssh\config"
 
 Write-Host "Auto-start apps ..."
-Link_File -Source "$DOTFILES_DIR\autohotkey\404pilot.ahk" -Output "$Env:AppData\Microsoft\Windows\Start Menu\Programs\Startup"
+Link_File -Source "$DOTFILES_DIR\autohotkey\404pilot.ahk" -Output "$Env:AppData\Microsoft\Windows\Start Menu\Programs\Startup\404pilot.ahk"
 
 Write-Host "Configuring cmd ..."
 REG import $DOTFILES_DIR\cmd\autorun_cmd_alias.reg
