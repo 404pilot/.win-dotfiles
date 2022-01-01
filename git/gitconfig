@@ -24,7 +24,14 @@
     mg = merge --no-ff
 
 [push]
-    # default = simple
+    # default = simple (git default configuration)
+    # 'simple' and 'upstream':
+    # 'git push' will fail if the remote branch is not created and not tracked
+    # 'simple' needs that the name of remote branch and the name of local branch is same
+    # while 'upstream' can have different names for remote branch and local branch
+    #
+    # 'current' does not need the remote branch exists at very beginning
+    # 'git push' will create a remote branch with the same name of current branch if it does not exist in the remote repository
     default = current
 
 [core]

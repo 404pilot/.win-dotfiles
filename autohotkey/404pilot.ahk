@@ -4,6 +4,8 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 EnvGet, ComputerName, COMPUTERNAME
+IsLaptop := InStr(ComputerName, "LAPTOP", false) > 0 ? True : False
+IsDesktop := InStr(ComputerName, "DESKTOP", false) > 0 ? True : False
 
 GetScoopManagedAppPath(app_path)
 {
@@ -38,16 +40,27 @@ LAlt & f::BringUpFrontApp("ahk_exe msedge.exe", "C:\Program Files (x86)\Microsof
 LAlt & Esc::BringUpFrontApp("ahk_exe explorer.exe ahk_class CabinetWClass", "C:\Windows\explorer.exe")
 LAlt & 1::BringUpFrontApp("ahk_exe Code.exe", GetScoopManagedAppPath("vscode\current\Code.exe"))
 LAlt & 3::BringUpFrontApp("ahk_exe Notion.exe", GetScoopManagedAppPath("notion\current\Notion.exe"))
-LAlt & 4::BringUpFrontApp("ahk_exe Teams.exe", GetLocalApp("Microsoft\Teams\Update.exe", "--processStart ""Teams.exe"""))
 LAlt & 6::BringUpFrontApp("ahk_exe OUTLOOK.EXE", "OUTLOOK.exe")
 ; ; LAlt & v::BringUpFrontApp("ahk_exe ONENOTE.exe", "OneNote.lnk")
 ; LAlt & v::BringUpFrontApp("ahk_exe onenoteim.exe", "OneNote1.lnk")
 
+LAlt & 4::
+    ; 300 seconds: 5 min
+    ; 480 minutes: 8 hours
+    ; TODO not Exist
+    if not WinExist("ahk_exe Teams.exe")
+        run, powershell "caffeine 300 -activefor:480 -replace"
+    BringUpFrontApp("ahk_exe Teams.exe", GetLocalApp("Microsoft\Teams\Update.exe", "--processStart ""Teams.exe"""))
+return
+
 LAlt & e::
-    if laptop in ComputerName
+    if IsLaptop
         BringUpFrontApp("ahk_exe WindowsTerminal.exe", "wt")
-    else
+        return
+
+    if IsDestop
         BringUpFrontApp("ahk_exe cmd.exe", "C:\Windows\System32\cmd.exe /k D:\work\OneDrive.Client\init.cmd")
+        return
 return
 
 ; Combinations of three or more keys are not supported.
