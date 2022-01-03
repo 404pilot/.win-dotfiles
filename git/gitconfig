@@ -2,6 +2,9 @@
     name = 404pilot
     email = 404pilot@users.noreply.github.com
 
+[includeIf "gitdir:D:/"]
+    path = D:/gitconfig-work
+
 [includeIf "gitdir:~/Work/private/"]
     path = ~/Work/private/gitconfig-work
 
@@ -16,7 +19,7 @@
     st = status
     br = branch -a
     cmm = commit -m
-    lol = log --oneline -n 10
+    ll = log --oneline -n 10
     bye = reset --hard HEAD
     wormhole = reset --hard HEAD~1
     wip = reset --soft HEAD~1
