@@ -1,7 +1,7 @@
 @if "%_echo%"=="" echo off
 
 REM --git
-@doskey gbye=git add --all; git reset --hard HEAD
+@doskey gbye=git reset --hard HEAD
 @doskey gs=git status
 @doskey gb=git branch
 @doskey gma=git commit -am $*

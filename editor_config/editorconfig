@@ -3,6 +3,9 @@
 # top-most EditorConfig file
 root = true
 
+# remember there is no space between file extentions. It is a regex rule
+## *.{h, cpp} is wrong. Use *.{h.cpp}
+
 [*]
 end_of_line = crlf
 insert_final_newline = true
@@ -14,8 +17,12 @@ indent_size = 4
 [*.{erb,rb,json,yml,lua,js,yaml,java,tf,sh}]
 indent_size = 2
 
-[*.{cpp, cs}]
+[*.{vcxproj,vcxproj.filters}]
 insert_final_newline = false
+
+[*.{h,cpp,cs}]
+insert_final_newline = false
+guidelines = 120, 130
 
 [*.tmp.yea]
 insert_final_newline = false
